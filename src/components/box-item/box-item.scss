@@ -1,0 +1,81 @@
+/*
+  .box-item
+  .box-item__record
+  .box-item--start
+  .box-item--pause
+*/
+.box-item {
+    width: 100%;
+    min-height: 200rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background: var(--white-100);
+    border: 1rem solid var(--gray-100);
+    animation: flip 600ms forwards;
+    opacity: 0;
+    cursor: pointer;
+    position: relative;
+
+  &::before {
+    content: "";
+    width: 100rem;
+    height: 100rem;
+    position: absolute;
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &--start {
+    &::before {
+      background: url("../../assets/images/play-ico.svg") no-repeat center/contain;
+    }
+  }
+  &--pause {
+    &::before {
+      background: url("../../assets/images/pause-ico.svg") no-repeat center/contain;
+    }
+  }
+
+    &:hover {
+      &::before {
+        opacity: 1;
+      }
+    }
+
+  &__record {
+    width: 100%;
+    max-width: 100rem;
+    margin-bottom: 8rem;
+    &--loop {
+      animation: circle 1s infinite linear;
+      animation-play-state: running;
+    }
+  }
+
+  &__audio {
+    pointer-events: none;
+  }
+}
+
+
+@for $i from 1 through 9 {
+    .box-item {
+      &:nth-child(#{$i}) {
+        animation-delay: $i * 100ms;
+      }
+    }
+  }
+
+  
+@keyframes flip {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); opacity: 1;}
+}
+
+@keyframes circle {
+    50% {transform: rotate(180deg)}
+    100% { transform: rotate(360deg); }
+}
