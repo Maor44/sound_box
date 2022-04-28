@@ -14,42 +14,49 @@ export type AudioObject  = {
 }
 
 const BoxGrid = ({playAll, handlePlayAllClick}:BoxGridProps) => {
-  const [activeAudios, setActiveAudios] = useState<{ [p: number]: AudioObject } | null>(null)
+  const [activeAudios, setActiveAudios] = useState<{ [p: number]: AudioObject }>({})
+  const [waitNextIteration, setWaitNextIteration] = useState(true)
   
   const handleActiveAudioClick = async(audioElement: HTMLAudioElement, isPlay: boolean, id: number) => {
-    handlePlayAllClick(true);
-
     let obj = {audioElement, isPlay};
-
     if(activeAudios?.hasOwnProperty(id)){
       obj = {...activeAudios[id], isPlay: !activeAudios[id].isPlay};
     }
-
-    setActiveAudios(prevState =>( {...prevState, [id]: obj}))
+    setActiveAudios(prevState =>( {...prevState, [id]: obj}));
+    handlePlayAllClick(true);
   }
 
-  // useEffect(() => {
-  //   activeAudios.map(el => playAll ? el.isPlay = true : el?.isPlay = false);
-  // }, [playAll])
-
   useEffect(() => {
-      if(!activeAudios){
-          return;
-      }
-    // console.log("activeAudios", activeAudios);
-    //
-    //   Object.entries(activeAudios).map(([key, value]) => {
-    //     value.audioElement.play();
-    //   })
-    // activeAudios[0]?.isPlay && activeAudios[0].audioElement.play();
-      //   activeAudios[0]?.audioElement.addEventListener("ended", () => {
-      //     activeAudios.forEach((el) => {
-      //       el.audioElement.currentTime = 0;
-      //       el.isPlay && el.audioElement.play();
-      //     })
-      //   })
+      Object.values(activeAudios).forEach((value) => {
+        if(playAll){
+          value.isPlay && value.audioElement.play();
+        }
+        else {
+          value.audioElement.pause();
+        }
+      })
+  }, [playAll]);
 
-  }, [activeAudios])
+
+    useEffect(() => {
+        Object.values(activeAudios).forEach(async(value) => {
+          if(waitNextIteration){
+                setWaitNextIteration(false)
+                value.isPlay && await value.audioElement.play();
+                value.audioElement.addEventListener("ended", () => {
+                  setWaitNextIteration(true);
+                  value.audioElement.currentTime = 0;
+                  value.isPlay && value.audioElement.play();
+                })
+            }
+        })
+
+
+        if(Object.values(activeAudios).every(item => !item.isPlay)){
+          handlePlayAllClick(false);
+          setWaitNextIteration(true)
+        }
+    }, [activeAudios, waitNextIteration])
 
 
   return (

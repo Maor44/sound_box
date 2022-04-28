@@ -8,15 +8,15 @@ const App = () => {
   const [playAll, setPlayAll] = useState(false);
 
   const handlePlayAllClick = (status: boolean) => {
-    setPlayAll(status)
+      setPlayAll(status)
   }
 
   return (
     <>
-      <Navbar /> 
+      <Navbar title="Sound Box" />
       <div className='app container'>
         <Actions playAll={playAll} handlePlayAllClick={handlePlayAllClick} />
-        <BoxGrid handlePlayAllClick={handlePlayAllClick} playAll={playAll} />
+        <BoxGrid playAll={playAll} handlePlayAllClick={handlePlayAllClick} />
       </div>
     </>
   )

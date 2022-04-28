@@ -49,9 +49,9 @@
     width: 100%;
     max-width: 100rem;
     margin-bottom: 8rem;
+    user-select: none;
     &--loop {
       animation: circle 1s infinite linear;
-      animation-play-state: running;
     }
   }
 
