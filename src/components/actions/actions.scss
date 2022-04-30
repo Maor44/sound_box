@@ -4,50 +4,55 @@
     .actions__custom__checkbox
 */
 .actions {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0;
-    margin-bottom: 16rem;
-    animation: fade-in 800ms forwards;
-    &__checkbox {
-        cursor: pointer;
-        position: absolute;
-        top: 0;
-        right: 0;
-        z-index: 1;
-        opacity: 0;
-        width: 64rem;
-        height: 32rem;
-        &:checked {
-            ~ .actions__custom__checkbox {
-                background: var(--yellow-100);
-                &::after {
-                    left: 4rem;
-                }
-            }
-        }
-    }
-    &__custom__checkbox {
-        width: 64rem;
-        height: 32rem;
-        background-color: var(--gray-100);
-        border-radius: 16rem;
-        position: relative;
-        margin-left: 8rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0;
+  margin-bottom: 16rem;
+  animation: fade-in 800ms forwards;
+
+  &__checkbox {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+    opacity: 0;
+    width: 64rem;
+    height: 32rem;
+
+    &:checked {
+      ~ .actions__custom__checkbox {
+        background: var(--yellow-100);
+
         &::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: calc(100% - 28rem);
-            transform: translateY(-50%);
-            border-radius: 50%;
-            width: 24rem;
-            height: 24rem;
-            background: var(--white-100);
-            transition: left 200ms linear;
+          left: 4rem;
         }
+      }
     }
+  }
+
+  &__custom__checkbox {
+    width: 64rem;
+    height: 32rem;
+    background-color: var(--gray-100);
+    border-radius: 16rem;
+    position: relative;
+    margin-left: 8rem;
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: calc(100% - 28rem);
+      transform: translateY(-50%);
+      border-radius: 50%;
+      width: 24rem;
+      height: 24rem;
+      background: var(--white-100);
+      transition: left 200ms linear;
+    }
+  }
 }
 
