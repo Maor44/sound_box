@@ -1,3 +1,8 @@
+/*
+    .actions
+    .actions__checkbox
+    .actions__custom__checkbox
+*/
 .actions {
     position: relative;
     display: flex;
@@ -6,9 +11,6 @@
     padding: 0;
     margin-bottom: 16rem;
     animation: fade-in 800ms forwards;
-    &__toggle {
-        margin-left: 8rem;
-    }
     &__checkbox {
         cursor: pointer;
         position: absolute;
@@ -33,6 +35,7 @@
         background-color: var(--gray-100);
         border-radius: 16rem;
         position: relative;
+        margin-left: 8rem;
         &::after {
             content: "";
             position: absolute;

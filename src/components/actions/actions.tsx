@@ -8,11 +8,9 @@ interface ActionsProps {
 const Actions = ({playAll, handlePlayAllClick}: ActionsProps) => {
   return (
     <div className="actions">
-        <span>Music on</span>
-        <label htmlFor="actions__toggle" className="actions__toggle">
-            <input type="checkbox" name="actions__toggle" className="actions__checkbox" checked={playAll} onChange={(e) => handlePlayAllClick(e.target.checked)} />
+        <label htmlFor="MusicOn" className="actions__toggle">Music On</label>
+            <input id="MusicOn" type="checkbox" name="actions__toggle" className="actions__checkbox" checked={playAll} onChange={(e) => handlePlayAllClick(e.target.checked)} />
             <div className="actions__custom__checkbox"></div>
-        </label>
     </div>
   )
 }

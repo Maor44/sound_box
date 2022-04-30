@@ -1,7 +1,7 @@
 import './box-item.scss';
 import { useRef} from 'react';
 import Record from '../../assets/images/record.svg';
-import { AudioObject } from '../box-grid/box-grid';
+import {AudioObject} from "types";
 
 interface BoxItemProps {
   activeAudios: { [p: number]: AudioObject };
@@ -11,7 +11,7 @@ interface BoxItemProps {
 }
 
 const BoxItem = ({sound, handleActiveAudioClick, index, activeAudios}: BoxItemProps) => {
-  const audioBoxRef = useRef<HTMLAudioElement>(new Audio())
+  const audioBoxRef = useRef<HTMLAudioElement | null>(null)
 
   const handleBoxClick = async() => {
     if(audioBoxRef.current){

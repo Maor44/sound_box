@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import BoxItem from '../box-item/box-item';
 import "./box-grid.scss";
-import {SOUNDS} from "../../consts/sounds";
+import {SOUNDS} from "consts/sounds";
+import {AudioObject} from "types";
 
 interface BoxGridProps {
   playAll: boolean,
   handlePlayAllClick: (status: boolean) => void;
-}
-
-export type AudioObject  = {
-  audioElement: HTMLAudioElement;
-  isPlay: boolean;
 }
 
 const BoxGrid = ({playAll, handlePlayAllClick}:BoxGridProps) => {
