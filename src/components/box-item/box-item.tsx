@@ -24,9 +24,9 @@ const BoxItem = ({sound, handleActiveAudioClick, index, activeAudios}: BoxItemPr
   }
 
   return (
-    <div className={`box-item ${activeAudios[index]?.isPlay ? "box-item--pause" : "box-item--start"}`} onClick={handleBoxClick}>
+    <div data-testid="box-item" className={`box-item ${activeAudios[index]?.isPlay ? "box-item--pause" : "box-item--start"}`} onClick={handleBoxClick}>
       <img className={`box-item__record ${activeAudios[index]?.isPlay ? "box-item__record--loop" : ""}`} src={Record}  alt="Record"/>
-      <audio className="box-item__audio" ref={audioBoxRef} src={sound} controls />
+      <audio data-testid="audio" className="box-item__audio" ref={audioBoxRef} src={sound} controls />
     </div>
   )
 }
